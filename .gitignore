@@ -1,1 +1,10 @@
+# temporary files
 *.swp
+
+# toolchain
+**/toochain
+
+# object files
+*.exe
+*.o
+*.bin
