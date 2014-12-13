@@ -7,10 +7,16 @@ int main(void) {
   PE_low_level_init(); /* low level driver initialization, do not remove */
 
   for(;;) {
-     /* add your code here */
-     LEDB_Neg();
-     printf("hello world!\r\n");
-     WAIT1_Waitms(1000);
+    int result, value;
+
+    printf("Please enter a number:\r\n");
+    result = scanf("%d", &value);
+    while('\n' != getchar()); /* skip rest of input until '\n' */
+    if (result==1) { /* one value read */
+      printf("You entered: '%d'\r\n", value);
+    } else {
+      printf("Wrong number of input: is '%d' but should be '1'!\r\n", result);
+    }
   }
   /* do not leave main! */
   return 0;

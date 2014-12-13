@@ -1,4 +1,8 @@
-# Switch case selection
+﻿# Switch case selection
+
+---
+
+[Back](../instructions.md)
 
 ```c
 switch(variable) {

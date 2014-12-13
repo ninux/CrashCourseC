@@ -51,6 +51,40 @@
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include <stdio.h>
 
+int useRed = 1;
+
+int multiply(int a, int b) {
+  return a*b;
+}
+
+/* Divides two numbers (dividend/divisor) and returns the result. In case of division by zero,
+ * *isDivisionByZero is set to 1, otherwise to 0.
+ */
+int divide(int dividend, int divisor, int *isDivisionByZero) {
+  if (divisor==0) {
+    *isDivisionByZero = 1; /* is division by zero */
+    return 0;
+  } else {
+    *isDivisionByZero = 0; /* is division by zero */
+    return dividend/divisor;
+  }
+}
+
+/* Read a number from the console and return it */
+int readNumber(void) {
+  int res, number;
+
+  printf("Enter number:\r\n");
+  res = scanf("%d", &number);
+  while('\n' != getchar()); /* skip rest of input until '\n' */
+  if (res==1) { /* one value read */
+    return number;
+  } else {
+    printf("ERROR: Wrong number input!\r\n");
+    return 0;
+  }
+}
+
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
 /*lint -restore Enable MISRA rule (6.3) checking. */
@@ -62,6 +96,60 @@ int main(void)
   /*** End of Processor Expert internal initialization.                    ***/
 
   /* Write your code here */
+#if 1
+  for(;;) {
+    int dividend, divisor, result, isDivisionByZero;
+
+    dividend = readNumber();
+    divisor = readNumber();
+    result = divide(dividend, divisor, &isDivisionByZero);
+    if (isDivisionByZero) {
+      printf("ERROR: Division by zero!\r\n");
+    } else {
+      printf("Result: '%d'\r\n", result);
+    }
+  } /* for */
+#endif
+#if 0
+  for(;;) {
+    int result, value;
+
+    printf("Please enter a number:\r\n");
+    result = scanf("%d", &value);
+    while('\n' != getchar()); /* skip rest of input until '\n' */
+    if (result==1) { /* one value read */
+      printf("You entered: '%d'\r\n", value);
+    } else {
+      printf("Wrong number of input: is '%d' but should be '1'!\r\n", result);
+    }
+  }
+#endif
+
+#if 0
+  for(;;) {
+    char buffer[32];
+    int result;
+
+    printf("Please enter a word:\r\n");
+    result = scanf("%s", &buffer[0]);
+    if (result==1) {
+      printf("You entered: '%s'\r\n", &buffer[0]);
+    } else {
+      printf("Wrong number of input: is '%d' but should be '1'!\r\n", &buffer[0]);
+    }
+  }
+#endif
+#if 0
+  for(;;) {
+    if (useRed==1) {
+      LEDR_Neg();
+    } else {
+      LEDB_Neg();
+    }
+    WAIT1_Waitms(500);
+  }
+#endif
+#if 0
   for (;;) {
     LEDR_On();
     WAIT1_Waitms(50);
@@ -78,7 +166,7 @@ int main(void)
     printf("hello world!\r\n");
     printf("number %d\r\n", 5);
   }
-
+#endif
   /* For example: for(;;) { } */
 
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/

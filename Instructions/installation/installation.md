@@ -1,4 +1,9 @@
-# Installation
+﻿# Installation
+
+---
+
+[Back](../instructions.md)
+
 The goal is that you have all the necessary tools and drivers installed.
 
 You need the following:
